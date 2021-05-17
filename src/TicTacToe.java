@@ -9,13 +9,20 @@ public class TicTacToe {
     private static char bot;
     private boolean draw = false;
 
-    public TicTacToe() {
+    public void printBoard(char ch) {
+        for (int i = 0; i < boardSize; i++) {
+            for (int j = 0; j < boardSize; j++) {
+                System.out.print(board[i][j] = ch);
+                System.out.print("\t");
+            }
+            System.out.println();
+        }
     }
 
     public void printBoard() {
         for (int i = 0; i < boardSize; i++) {
             for (int j = 0; j < boardSize; j++) {
-                System.out.print(board[i][j] = '*');
+                System.out.print(board[i][j]);
                 System.out.print("\t");
             }
             System.out.println();
@@ -39,13 +46,7 @@ public class TicTacToe {
                 System.out.println("This move at (" + row + "," + col + ") is not valid. Try again...");
             }
         } while (!valid);
-        for (int i = 0; i < boardSize; i++) {
-            for (int j = 0; j < boardSize; j++) {
-                System.out.print(board[i][j]);
-                System.out.print("\t");
-            }
-            System.out.println();
-        }
+        printBoard();
     }
 
     public void selectPlayer() throws IOException {
@@ -114,17 +115,11 @@ public class TicTacToe {
             return;
         }
         System.out.println("Opponent's move...");
-        for (int i = 0; i < boardSize; i++) {
-            for (int j = 0; j < boardSize; j++) {
-                System.out.print(board[i][j]);
-                System.out.print("\t");
-            }
-            System.out.println();
-        }
+        printBoard();
     }
 
     public void play() throws IOException {
-        printBoard();
+        printBoard('*');
         selectPlayer();
         do {
             move();
